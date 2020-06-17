@@ -5,9 +5,22 @@ import { Application } from '../declarations';
 
 export default function (app: Application) {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
+  /**
+   * products-extras-groups model is used to bridge products and extras-groups models
+   */
   const productsExtrasGroups = sequelizeClient.define('products_extras_groups', {
-    text: {
-      type: DataTypes.STRING,
+    /**
+     * used to relate model with products model
+     */
+    productId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    /**
+     * used to relate model with extras-groups model
+     */
+    extrasGroupId: {
+      type: DataTypes.INTEGER,
       allowNull: false
     }
   }, {

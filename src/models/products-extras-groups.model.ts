@@ -20,8 +20,8 @@ export default function (app: Application) {
 
   // eslint-disable-next-line no-unused-vars
   (productsExtrasGroups as any).associate = function (models: any) {
-    // Define associations here
-    // See http://docs.sequelizejs.com/en/latest/docs/associations/
+    models.products_extras_groups.belongsTo(models.extras_groups)
+    models.products_extras_groups.belongsTo(models.products)
   };
 
   return productsExtrasGroups;

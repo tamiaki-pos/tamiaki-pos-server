@@ -6,7 +6,15 @@ import { Application } from '../declarations';
 export default function (app: Application) {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
   const users = sequelizeClient.define('users', {
-  
+    /** used to keep user full name */
+    fullName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    /** used to keep user phone contact details */
+    phone: {
+      type: DataTypes.STRING,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -16,8 +24,21 @@ export default function (app: Application) {
       type: DataTypes.STRING,
       allowNull: false
     },
-  
-  
+    /** used to keep user role details */
+    role: {
+      type: DataTypes.ENUM(
+        'ADMIN',
+        'MANAGER',
+        'EMPLOYEE'
+      ),
+      allowNull: false
+    },
+    /** used to determine if user can use its account */
+    active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
+    }
   }, {
     hooks: {
       beforeCount(options: any) {

@@ -50,6 +50,7 @@ export default function (app: Application) {
   // eslint-disable-next-line no-unused-vars
   (extrasGroups as any).associate = function (models: any) {
     models.extras_groups.belongsToMany(models.extras, { through: 'extras_groups_extras' })
+    models.extras_groups.belongsToMany(models.products, { through: 'products_extras_groups' })
   };
 
   return extrasGroups;

@@ -3,6 +3,7 @@ import users from './users/users.service';
 import products from './products/products.service';
 import extras from './extras/extras.service';
 import extrasGroups from './extras-groups/extras-groups.service';
+import extrasGroupsExtras from './extras-groups-extras/extras-groups-extras.service';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 export default function (app: Application) {
@@ -10,4 +11,5 @@ export default function (app: Application) {
   app.configure(products);
   app.configure(extras);
   app.configure(extrasGroups);
+  app.configure(extrasGroupsExtras);
 }

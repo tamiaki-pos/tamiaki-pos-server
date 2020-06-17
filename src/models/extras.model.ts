@@ -6,9 +6,53 @@ import { Application } from '../declarations';
 export default function (app: Application) {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
   const extras = sequelizeClient.define('extras', {
-    text: {
+    /**
+     * used for extras name
+     */
+    name: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    /**
+     * used for extras description
+     */
+    description: {
+      type: DataTypes.STRING
+    },
+    /**
+     * used for private notes
+     */
+    notes: {
+      type: DataTypes.STRING,
+    },
+    /**
+     * used for extras price
+     */
+    price: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false
+    },
+    /**
+     * used to check if extra is available
+     * when extra is ordered we update the value
+     * -1 represent unlimited amount of stock
+     * =0 means that it is not available
+     * >0 means that extra is in stock
+     */
+    stock: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: -1
+    },
+    /**
+     * used to override the availability of
+     * the extra, if value is false
+     * the extra cannot be ordered
+     */
+    available: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     }
   }, {
     hooks: {

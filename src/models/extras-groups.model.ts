@@ -5,9 +5,38 @@ import { Application } from '../declarations';
 
 export default function (app: Application) {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
+
+  /**
+   * used to group extras
+   */
   const extrasGroups = sequelizeClient.define('extras_groups', {
-    text: {
+    /**
+     * used for name
+     */
+    name: {
       type: DataTypes.STRING,
+      allowNull: false
+    },
+    /**
+     * used for description
+     */
+    description: {
+      type: DataTypes.STRING
+    },
+    /**
+     * used to indicate if you can choose
+     * a single extra or multiple
+     */
+    type: {
+      type: DataTypes.ENUM('SINGLE', 'MULTIPLE'),
+      allowNull: false
+    },
+    /**
+     * used to indicate if you have too choose
+     * an extra of this group
+     */
+    required: {
+      type: DataTypes.BOOLEAN,
       allowNull: false
     }
   }, {

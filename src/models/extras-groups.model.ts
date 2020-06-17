@@ -7,7 +7,7 @@ export default function (app: Application) {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
 
   /**
-   * used to group extras
+   * extras-group model used to group extras
    */
   const extrasGroups = sequelizeClient.define('extras_groups', {
     /**

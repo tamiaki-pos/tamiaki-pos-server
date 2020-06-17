@@ -5,6 +5,10 @@ import { Application } from '../declarations';
 
 export default function (app: Application) {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
+  /**
+   * extras model is used to represent additions to products
+   * like cheese, ham, double burger etc.
+   */
   const extras = sequelizeClient.define('extras', {
     /**
      * used for extras name

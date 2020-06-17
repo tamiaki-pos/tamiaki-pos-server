@@ -5,15 +5,29 @@ import { Application } from '../declarations';
 
 export default function (app: Application) {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
+  /**
+   * extras-groups-extras model used to represent
+   * which extra is contains in which extras-group
+   * and its default value
+   */
   const extrasGroupsExtras = sequelizeClient.define('extras_groups_extras', {
+    /**
+     * used to relate model with extras model
+     */
     extraId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    /**
+     * used to relate model with extras-groups model
+     */
     extrasGroupId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    /**
+     * used to specify if the extra is selected or not
+     */
     defaultValue: {
       type: DataTypes.BOOLEAN,
       allowNull: false

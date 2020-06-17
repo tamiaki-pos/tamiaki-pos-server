@@ -5,6 +5,9 @@ import { Application } from '../declarations';
 
 export default function (app: Application) {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
+  /**
+   * users model is used to represent the people/users who will interact with the POS system
+   */
   const users = sequelizeClient.define('users', {
     /** used to keep user full name */
     fullName: {

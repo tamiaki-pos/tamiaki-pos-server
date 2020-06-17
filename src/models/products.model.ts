@@ -5,6 +5,9 @@ import { Application } from '../declarations';
 
 export default function (app: Application) {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
+  /**
+   * products model is used to represent the POS products
+   */
   const products = sequelizeClient.define('products', {
     /**
      * used for product name

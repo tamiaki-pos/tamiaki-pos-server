@@ -6,8 +6,16 @@ import { Application } from '../declarations';
 export default function (app: Application) {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
   const extrasGroupsExtras = sequelizeClient.define('extras_groups_extras', {
-    text: {
-      type: DataTypes.STRING,
+    extraId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    extrasGroupId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    defaultValue: {
+      type: DataTypes.BOOLEAN,
       allowNull: false
     }
   }, {
@@ -20,8 +28,8 @@ export default function (app: Application) {
 
   // eslint-disable-next-line no-unused-vars
   (extrasGroupsExtras as any).associate = function (models: any) {
-    // Define associations here
-    // See http://docs.sequelizejs.com/en/latest/docs/associations/
+    models.extras_groups_extras.belongsTo(models.extras_groups)
+    models.extras_groups_extras.belongsTo(models.extras)
   };
 
   return extrasGroupsExtras;

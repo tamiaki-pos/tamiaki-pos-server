@@ -11,7 +11,7 @@ export default function (app: Application) {
       allowNull: false
     },
     billAmount: {
-      type: DataTypes.DECIMAL(10,2),
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
       defaultValue: 0
     }
@@ -27,6 +27,7 @@ export default function (app: Application) {
   (orders as any).associate = function (models: any) {
     models.orders.belongsTo(models.users)
     models.orders.belongsTo(models.billing_sessions)
+    models.orders.hasMany(models.order_products)
   };
 
   return orders;

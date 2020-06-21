@@ -6,6 +6,7 @@ import extrasGroups from './extras-groups/extras-groups.service';
 import extrasGroupsExtras from './extras-groups-extras/extras-groups-extras.service';
 import productsExtrasGroups from './products-extras-groups/products-extras-groups.service';
 import billingSessions from './billing-sessions/billing-sessions.service';
+import orders from './orders/orders.service';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 export default function (app: Application) {
@@ -16,4 +17,5 @@ export default function (app: Application) {
   app.configure(extrasGroupsExtras);
   app.configure(productsExtrasGroups);
   app.configure(billingSessions);
+  app.configure(orders);
 }

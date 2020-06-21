@@ -5,12 +5,8 @@ import { Application } from '../declarations';
 
 export default function (app: Application) {
   const sequelizeClient: Sequelize = app.get('sequelizeClient');
-  const billingSessions = sequelizeClient.define('billing_sessions', {
+  const orders = sequelizeClient.define('orders', {
     userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    tableId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -18,16 +14,6 @@ export default function (app: Application) {
       type: DataTypes.DECIMAL(10,2),
       allowNull: false,
       defaultValue: 0
-    },
-    paidAmount: {
-      type: DataTypes.DECIMAL(10, 2),
-      allowNull: false,
-      defaultValue: 0
-    },
-    active: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true
     }
   }, {
     hooks: {
@@ -38,10 +24,10 @@ export default function (app: Application) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  (billingSessions as any).associate = function (models: any) {
-    models.billing_sessions.belongsTo(models.users)
-    models.billing_sessions.hasMany(models.orders)
+  (orders as any).associate = function (models: any) {
+    models.orders.belongsTo(models.users)
+    models.orders.belongsTo(models.billing_sessions)
   };
 
-  return billingSessions;
+  return orders;
 }
